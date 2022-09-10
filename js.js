@@ -4,29 +4,31 @@ let price = document.querySelector(".price");
 let rest = document.querySelector(".rest");
 let list = document.querySelector(".list");
 let add = document.querySelector(".add");
-let moneyleft = document.querySelector(".money-left");
+let remaining = document.querySelector(".money-left");
 
 let arr = [];
 //get data and diaplay
-
 //prompt
 let InitialAmount = Number(prompt("enter Initial Amount"));
 budget.innerHTML = InitialAmount;
 
-moneyleft.innerHTML = `remaining:<span class ='remainingVal'>${InitialAmount}</span>`;
+remaining.innerHTML = `remaining:<span class ='remainingVal'>${InitialAmount}</span>`;
 //this function will display the remain data
 
 function displayData(nameval,priceval){
    let dataToDisplay;
+  // dataToDisplay.forEach(function (value, index) {
    nameval = nameIn.value;
    priceval = price.value;
    dataToDisplay = {'nameval':nameval,'priceval': priceval};
   arr.push(dataToDisplay);
   console.log(arr); 
   
-   list.innerHTML += `<p >${nameIn.value}</p>`;
+   list.innerHTML += `<p class='box'>${nameIn.value}<span class = 'inputPrice'>
+   ${price.value}</span><button class="delet">remove</button></p>`;
    localStorage.getItem('price'); 
-  
+  // })
+  // getDataFromLocalStorageAndDisplay();
 }
 //get remaining budget
 let remainingVal = document.querySelector(".remainingVal");
@@ -40,13 +42,11 @@ function redu(arrr) {
         (remainingVal, priceval) => Number(remainingVal) - Number(priceval.priceval),
         InitialAmount
         );
-        moneyleft.innerHTML = Number(newSum);
+        remaining.innerHTML = Number(newSum);
       } else {
-        alert("you dont have enough money");
+        alert("you`re broke!!!!");
       }
-      list.innerHTML +=`<span class = 'inputPrice'>
-      ${price.value}</span><button class="delet">remove</button>`;
-      // removeBtn();
+      removeBtn();
       
   }
 
@@ -61,6 +61,7 @@ function redu(arrr) {
 function removeBtn() {
   let deletBtn = document.querySelectorAll(".delet");
   deletBtn.forEach((elment, index) => {
+    // let mainIndex = index;
     elment.addEventListener("click", (e) => {
       arr.splice(index, 1);
       e.target.parentElement.remove();
@@ -81,7 +82,7 @@ function redRem() {
   let sumPrice = pricesArr.reduce((pre, cur) => {
     return pre + cur;
   }, 0);
-  moneyleft.innerHTML = InitialAmount - sumPrice;
+  remaining.innerHTML = InitialAmount - sumPrice;
 }
 
 function getDataFromLocalStorageAndDisplay(){
