@@ -1,0 +1,27 @@
+body{
+    font-family: var();
+    background-image: url('https://i.pinimg.com/originals/6c/90/44/6c9044dc9c8ddc85649c4865cfadba92.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+color: aliceblue;
+}
+
+input{
+    width: 400px;
+    text-align: center;
+    border-color:silver;
+    border-radius:20px;
+}
+button{
+    width: 100px;
+    border-radius: 10px;
+}
+.box{
+    background-color: rgb(28, 40, 40);
+    margin-top: 50px;
+    box-shadow: 20px 20px 20px black;
+}
+.box-containr{
+    text-align: center;
+}
